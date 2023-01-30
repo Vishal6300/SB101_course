@@ -1,0 +1,12 @@
+What do you mean by Method Reference, 
+How to refer static method, non-static method and constructor, 
+implement the following interface using Method reference using static method, 
+non-static method and constructor example:
+
+ANS:-
+
+Method reference is used to refer method of functional interface. 
+1.	It is compact and easy form of lambda expression.
+2.	Each time when you are using lambda expression to just referring a method,
+3.	We can replace our lambda expression with method reference.
+	
