@@ -5,6 +5,7 @@ public class Product {
 	private String productName;
 	private Double price;
 	private Integer quantity;
+	
 	public Integer getProductId() {
 		return productId;
 	}

@@ -14,9 +14,9 @@ public class Main {
 		
 		Consumer<Product>consumer=p->System.out.println(p);
 		
-		consumer.accept(new Product(03,"sharp",35.00,50));
+		consumer.accept(new Product(03,"sharpner",35.00,50));
 		
-		Supplier<Product>supplier=()->new Product(03,"sharp",35.00,50);
+		Supplier<Product>supplier=()->new Product(03,"sharpner",45.00,70);
 		
 		System.out.println(supplier.get());
 	}

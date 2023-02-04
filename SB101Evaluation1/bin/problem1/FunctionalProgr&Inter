@@ -1,6 +1,6 @@
-What do you mean by Functional programming and Functional interface?
+ What do you mean by Functional programming and Functional interface?
 
-Functional Programming:- Functional programming is nothing but a style of programming,
+ Functional Programming:- Functional programming is nothing but a style of programming,
  that promotes pure functions. By pure function, I mean a piece of code that takes
  some input, performs computations, and gives the desired output.
  
@@ -11,4 +11,4 @@ Functional Programming:- Functional programming is nothing but a style of progra
  functional interface. It can have any number of default, static methods but can contain 
  only one abstract method. 
  It can also declare methods of object class.
-It is also known as Single Abstract Method Interfaces or SAM Interfaces.
+ It is also known as Single Abstract Method Interfaces or SAM Interfaces.
