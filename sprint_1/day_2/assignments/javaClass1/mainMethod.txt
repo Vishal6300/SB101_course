@@ -1,0 +1,4 @@
+What is the main() method in Java, explain its signature in detail?
+ It is a default signature which is predefined in the JVM.
+ It is called by JVM to execute a program line by line and end the execution after completion of this method.
+ We can also overload the main() method.
