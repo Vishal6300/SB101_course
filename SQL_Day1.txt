@@ -1,0 +1,315 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| eva4               |
+| firstproject       |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pscproject         |
+| sb101_db           |
+| sys                |
+| web21db            |
++--------------------+
+9 rows in set (0.01 sec)
+
+mysql> create database sb101_Feb;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use sb101_Feb;
+Database changed
+
+mysql> create table student(rollNo int(8) Primary key, name varchar(20) not null, email varchar(20) UNIQUE, x_per double(5,2) Default(33.0), state varchar(25));
+Query OK, 0 rows affected, 2 warnings (0.12 sec)
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------------------+
+| Field  | Type        | Null | Key | Default | Extra             |
++--------+-------------+------+-----+---------+-------------------+
+| rollNo | int         | NO   | PRI | NULL    |                   |
+| name   | varchar(20) | NO   |     | NULL    |                   |
+| email  | varchar(20) | YES  | UNI | NULL    |                   |
+| x_per  | double(5,2) | YES  |     | 33.0    | DEFAULT_GENERATED |
+| state  | varchar(25) | YES  |     | NULL    |                   |
++--------+-------------+------+-----+---------+-------------------+
+5 rows in set (0.04 sec)
+
+mysql> insert into student values(1,"ABC",'abc@gmail.com',75.42,"Karnataka")
+;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student(name,rollNo,state, email) values("XYZ",2,"Odisha",'xyz@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> describe students;
+ERROR 1146 (42S02): Table 'sb101_feb.students' doesn't exist
+mysql> describe student;
++--------+-------------+------+-----+---------+-------------------+
+| Field  | Type        | Null | Key | Default | Extra             |
++--------+-------------+------+-----+---------+-------------------+
+| rollNo | int         | NO   | PRI | NULL    |                   |
+| name   | varchar(20) | NO   |     | NULL    |                   |
+| email  | varchar(20) | YES  | UNI | NULL    |                   |
+| x_per  | double(5,2) | YES  |     | 33.0    | DEFAULT_GENERATED |
+| state  | varchar(25) | YES  |     | NULL    |                   |
++--------+-------------+------+-----+---------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student;
++--------+------+---------------+-------+-----------+
+| rollNo | name | email         | x_per | state     |
++--------+------+---------------+-------+-----------+
+|      1 | ABC  | abc@gmail.com | 75.42 | Karnataka |
+|      2 | XYZ  | xyz@gmail.com | 33.00 | Odisha    |
++--------+------+---------------+-------+-----------+
+2 rows in set (0.00 sec)
+
+
+mysql> Alter table student Add dob date;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------------------+
+| Field  | Type        | Null | Key | Default | Extra             |
++--------+-------------+------+-----+---------+-------------------+
+| rollNo | int         | NO   | PRI | NULL    |                   |
+| name   | varchar(20) | NO   |     | NULL    |                   |
+| email  | varchar(20) | YES  | UNI | NULL    |                   |
+| x_per  | double(5,2) | YES  |     | 33.0    | DEFAULT_GENERATED |
+| state  | varchar(25) | YES  |     | NULL    |                   |
+| dob    | date        | YES  |     | NULL    |                   |
++--------+-------------+------+-----+---------+-------------------+
+6 rows in set (0.01 sec)
+
+mysql> Alter table student modify email varchar(50);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------------------+
+| Field  | Type        | Null | Key | Default | Extra             |
++--------+-------------+------+-----+---------+-------------------+
+| rollNo | int         | NO   | PRI | NULL    |                   |
+| name   | varchar(20) | NO   |     | NULL    |                   |
+| email  | varchar(50) | YES  | UNI | NULL    |                   |
+| x_per  | double(5,2) | YES  |     | 33.0    | DEFAULT_GENERATED |
+| state  | varchar(25) | YES  |     | NULL    |                   |
+| dob    | date        | YES  |     | NULL    |                   |
++--------+-------------+------+-----+---------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> Alter table student change dob birth_date date;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++------------+-------------+------+-----+---------+-------------------+
+| Field      | Type        | Null | Key | Default | Extra             |
++------------+-------------+------+-----+---------+-------------------+
+| rollNo     | int         | NO   | PRI | NULL    |                   |
+| name       | varchar(20) | NO   |     | NULL    |                   |
+| email      | varchar(50) | YES  | UNI | NULL    |                   |
+| x_per      | double(5,2) | YES  |     | 33.0    | DEFAULT_GENERATED |
+| state      | varchar(25) | YES  |     | NULL    |                   |
+| birth_date | date        | YES  |     | NULL    |                   |
++------------+-------------+------+-----+---------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> Alter Table student rename to st;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_sb101_feb |
++---------------------+
+| st                  |
++---------------------+
+1 row in set (0.02 sec)
+
+mysql> ALter table st rename to student;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> ALter table student drop birth_date;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------------------+
+| Field  | Type        | Null | Key | Default | Extra             |
++--------+-------------+------+-----+---------+-------------------+
+| rollNo | int         | NO   | PRI | NULL    |                   |
+| name   | varchar(20) | NO   |     | NULL    |                   |
+| email  | varchar(50) | YES  | UNI | NULL    |                   |
+| x_per  | double(5,2) | YES  |     | 33.0    | DEFAULT_GENERATED |
+| state  | varchar(25) | YES  |     | NULL    |                   |
++--------+-------------+------+-----+---------+-------------------+
+5 rows in set (0.01 sec)
+
+mysql> Alter table student drop primary key;
+Query OK, 2 rows affected (0.10 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------------------+
+| Field  | Type        | Null | Key | Default | Extra             |
++--------+-------------+------+-----+---------+-------------------+
+| rollNo | int         | NO   |     | NULL    |                   |
+| name   | varchar(20) | NO   |     | NULL    |                   |
+| email  | varchar(50) | YES  | UNI | NULL    |                   |
+| x_per  | double(5,2) | YES  |     | 33.0    | DEFAULT_GENERATED |
+| state  | varchar(25) | YES  |     | NULL    |                   |
++--------+-------------+------+-----+---------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> Alter table student modify name varchar(20) Null;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------------------+
+| Field  | Type        | Null | Key | Default | Extra             |
++--------+-------------+------+-----+---------+-------------------+
+| rollNo | int         | NO   |     | NULL    |                   |
+| name   | varchar(20) | YES  |     | NULL    |                   |
+| email  | varchar(50) | YES  | UNI | NULL    |                   |
+| x_per  | double(5,2) | YES  |     | 33.0    | DEFAULT_GENERATED |
+| state  | varchar(25) | YES  |     | NULL    |                   |
++--------+-------------+------+-----+---------+-------------------+
+5 rows in set (0.01 sec)
+
+mysql> Show create table student;
++---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table
+
+
+
+ |
++---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| student | CREATE TABLE `student` (
+  `rollNo` int NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `x_per` double(5,2) DEFAULT (33.0),
+  `state` varchar(25) DEFAULT NULL,
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> Alter table student Drop Index email;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------------------+
+| Field  | Type        | Null | Key | Default | Extra             |
++--------+-------------+------+-----+---------+-------------------+
+| rollNo | int         | NO   |     | NULL    |                   |
+| name   | varchar(20) | YES  |     | NULL    |                   |
+| email  | varchar(50) | YES  |     | NULL    |                   |
+| x_per  | double(5,2) | YES  |     | 33.0    | DEFAULT_GENERATED |
+| state  | varchar(25) | YES  |     | NULL    |                   |
++--------+-------------+------+-----+---------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> Alter Table student add primary key(rollNo);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------------------+
+| Field  | Type        | Null | Key | Default | Extra             |
++--------+-------------+------+-----+---------+-------------------+
+| rollNo | int         | NO   | PRI | NULL    |                   |
+| name   | varchar(20) | YES  |     | NULL    |                   |
+| email  | varchar(50) | YES  |     | NULL    |                   |
+| x_per  | double(5,2) | YES  |     | 33.0    | DEFAULT_GENERATED |
+| state  | varchar(25) | YES  |     | NULL    |                   |
++--------+-------------+------+-----+---------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> Alter table student modify email varchar(20) UNIQUE;
+Query OK, 2 rows affected (0.08 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------------------+
+| Field  | Type        | Null | Key | Default | Extra             |
++--------+-------------+------+-----+---------+-------------------+
+| rollNo | int         | NO   | PRI | NULL    |                   |
+| name   | varchar(20) | YES  |     | NULL    |                   |
+| email  | varchar(20) | YES  | UNI | NULL    |                   |
+| x_per  | double(5,2) | YES  |     | 33.0    | DEFAULT_GENERATED |
+| state  | varchar(25) | YES  |     | NULL    |                   |
++--------+-------------+------+-----+---------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> Alter table student alter x_per drop default;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollNo | int         | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| email  | varchar(20) | YES  | UNI | NULL    |       |
+| x_per  | double(5,2) | YES  |     | NULL    |       |
+| state  | varchar(25) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> ALter table student alter x_per SET Default 33.0;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollNo | int         | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| email  | varchar(20) | YES  | UNI | NULL    |       |
+| x_per  | double(5,2) | YES  |     | 33.00   |       |
+| state  | varchar(25) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+mysql> insert into student values(3,"bhoomi",'bhoomi@gmail.com',45.42,"Kerala");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(4,"hero",'hero@gmail.com',85.42,"Jharkhand");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(5,"Ram",'ram@gmail.com',91.12,"Bihar");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++--------+--------+------------------+-------+-----------+
+| rollNo | name   | email            | x_per | state     |
++--------+--------+------------------+-------+-----------+
+|      1 | ABC    | abc@gmail.com    | 75.42 | Karnataka |
+|      2 | XYZ    | xyz@gmail.com    | 33.00 | Odisha    |
+|      3 | bhoomi | bhoomi@gmail.com | 45.42 | Kerala    |
+|      4 | hero   | hero@gmail.com   | 85.42 | Jharkhand |
+|      5 | Ram    | ram@gmail.com    | 91.12 | Bihar     |
++--------+--------+------------------+-------+-----------+
+5 rows in set (0.00 sec)
+

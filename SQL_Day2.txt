@@ -1,0 +1,684 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| eva4               |
+| firstproject       |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pscproject         |
+| sb101_db           |
+| sb101_feb          |
+| sys                |
+| web21db            |
++--------------------+
+10 rows in set (0.04 sec)
+
+mysql> use sb101_feb;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_sb101_feb |
++---------------------+
+| student             |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> select * from student;
++--------+--------+------------------+-------+-----------+
+| rollNo | name   | email            | x_per | state     |
++--------+--------+------------------+-------+-----------+
+|      1 | ABC    | abc@gmail.com    | 75.42 | Karnataka |
+|      2 | XYZ    | xyz@gmail.com    | 33.00 | Odisha    |
+|      3 | bhoomi | bhoomi@gmail.com | 45.42 | Kerala    |
+|      4 | hero   | hero@gmail.com   | 85.42 | Jharkhand |
+|      5 | Ram    | ram@gmail.com    | 91.12 | Bihar     |
++--------+--------+------------------+-------+-----------+
+5 rows in set (0.01 sec)
+
+mysql> UPDATE student Set x_per = x_per + 2 WHERE x_per>70.0;
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from student;
++--------+--------+------------------+-------+-----------+
+| rollNo | name   | email            | x_per | state     |
++--------+--------+------------------+-------+-----------+
+|      1 | ABC    | abc@gmail.com    | 77.42 | Karnataka |
+|      2 | XYZ    | xyz@gmail.com    | 33.00 | Odisha    |
+|      3 | bhoomi | bhoomi@gmail.com | 45.42 | Kerala    |
+|      4 | hero   | hero@gmail.com   | 87.42 | Jharkhand |
+|      5 | Ram    | ram@gmail.com    | 93.12 | Bihar     |
++--------+--------+------------------+-------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> Delete from student where x_per<=45.0;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++--------+--------+------------------+-------+-----------+
+| rollNo | name   | email            | x_per | state     |
++--------+--------+------------------+-------+-----------+
+|      1 | ABC    | abc@gmail.com    | 77.42 | Karnataka |
+|      3 | bhoomi | bhoomi@gmail.com | 45.42 | Kerala    |
+|      4 | hero   | hero@gmail.com   | 87.42 | Jharkhand |
+|      5 | Ram    | ram@gmail.com    | 93.12 | Bihar     |
++--------+--------+------------------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select rollNo,x_per,state from student;
++--------+-------+-----------+
+| rollNo | x_per | state     |
++--------+-------+-----------+
+|      1 | 77.42 | Karnataka |
+|      3 | 45.42 | Kerala    |
+|      4 | 87.42 | Jharkhand |
+|      5 | 93.12 | Bihar     |
++--------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> Select Distinct(x_per) from student;
++-------+
+| x_per |
++-------+
+| 77.42 |
+| 45.42 |
+| 87.42 |
+| 93.12 |
++-------+
+4 rows in set (0.01 sec)
+
+mysql> Select rollNo as "ROLL", name as "STUDENT NAME", x_per as "P
+ercentage" from student;
++------+--------------+------------+
+| ROLL | STUDENT NAME | Percentage |
++------+--------------+------------+
+|    1 | ABC          |      77.42 |
+|    3 | bhoomi       |      45.42 |
+|    4 | hero         |      87.42 |
+|    5 | Ram          |      93.12 |
++------+--------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> Select rollNo ROLL, name STUDENT_NAME, x_per Percentage from student;
++------+--------------+------------+
+| ROLL | STUDENT_NAME | Percentage |
++------+--------------+------------+
+|    1 | ABC          |      77.42 |
+|    3 | bhoomi       |      45.42 |
+|    4 | hero         |      87.42 |
+|    5 | Ram          |      93.12 |
++------+--------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student WHere x_per>75;;
++--------+------+----------------+-------+-----------+
+| rollNo | name | email          | x_per | state     |
++--------+------+----------------+-------+-----------+
+|      1 | ABC  | abc@gmail.com  | 77.42 | Karnataka |
+|      4 | hero | hero@gmail.com | 87.42 | Jharkhand |
+|      5 | Ram  | ram@gmail.com  | 93.12 | Bihar     |
++--------+------+----------------+-------+-----------+
+3 rows in set (0.00 sec)
+
+ERROR:
+No query specified
+
+mysql> select * from student WHere x_per>75;
++--------+------+----------------+-------+-----------+
+| rollNo | name | email          | x_per | state     |
++--------+------+----------------+-------+-----------+
+|      1 | ABC  | abc@gmail.com  | 77.42 | Karnataka |
+|      4 | hero | hero@gmail.com | 87.42 | Jharkhand |
+|      5 | Ram  | ram@gmail.com  | 93.12 | Bihar     |
++--------+------+----------------+-------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values(2,"sudip","sudip@ms",56.43,"Nepal
+";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into student values(2,"sudip","sudip@ms",56.43,"Nepal");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(6,"Ravi","ravi@ms",72.43,"UP");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(7,"mosham","mosham@ms",42.51,"UP");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(8,"Rehan","rehan@ms",59.11,"MP");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(9,"Levis","levis@ms",91.11,"KARNATAKA");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(10,"Shruthi","Shruthi@ms",97.11,"Kerala");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++--------+---------+------------------+-------+-----------+
+| rollNo | name    | email            | x_per | state     |
++--------+---------+------------------+-------+-----------+
+|      1 | ABC     | abc@gmail.com    | 77.42 | Karnataka |
+|      2 | sudip   | sudip@ms         | 56.43 | Nepal     |
+|      3 | bhoomi  | bhoomi@gmail.com | 45.42 | Kerala    |
+|      4 | hero    | hero@gmail.com   | 87.42 | Jharkhand |
+|      5 | Ram     | ram@gmail.com    | 93.12 | Bihar     |
+|      6 | Ravi    | ravi@ms          | 72.43 | UP        |
+|      7 | mosham  | mosham@ms        | 42.51 | UP        |
+|      8 | Rehan   | rehan@ms         | 59.11 | MP        |
+|      9 | Levis   | levis@ms         | 91.11 | KARNATAKA |
+|     10 | Shruthi | Shruthi@ms       | 97.11 | Kerala    |
++--------+---------+------------------+-------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from student WHERE x_per <>77.42;
++--------+---------+------------------+-------+-----------+
+| rollNo | name    | email            | x_per | state     |
++--------+---------+------------------+-------+-----------+
+|      2 | sudip   | sudip@ms         | 56.43 | Nepal     |
+|      3 | bhoomi  | bhoomi@gmail.com | 45.42 | Kerala    |
+|      4 | hero    | hero@gmail.com   | 87.42 | Jharkhand |
+|      5 | Ram     | ram@gmail.com    | 93.12 | Bihar     |
+|      6 | Ravi    | ravi@ms          | 72.43 | UP        |
+|      7 | mosham  | mosham@ms        | 42.51 | UP        |
+|      8 | Rehan   | rehan@ms         | 59.11 | MP        |
+|      9 | Levis   | levis@ms         | 91.11 | KARNATAKA |
+|     10 | Shruthi | Shruthi@ms       | 97.11 | Kerala    |
++--------+---------+------------------+-------+-----------+
+9 rows in set (0.00 sec)
+
+mysql> Select * from student where x_per>33.00 AND x_per <=72.43;
++--------+--------+------------------+-------+--------+
+| rollNo | name   | email            | x_per | state  |
++--------+--------+------------------+-------+--------+
+|      2 | sudip  | sudip@ms         | 56.43 | Nepal  |
+|      3 | bhoomi | bhoomi@gmail.com | 45.42 | Kerala |
+|      6 | Ravi   | ravi@ms          | 72.43 | UP     |
+|      7 | mosham | mosham@ms        | 42.51 | UP     |
+|      8 | Rehan  | rehan@ms         | 59.11 | MP     |
++--------+--------+------------------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> Select * from student where x_per>73.00 AND state=UP;
+ERROR 1054 (42S22): Unknown column 'UP' in 'where clause'
+mysql> Select * from student where x_per>73.00 AND state="UP";
+Empty set (0.00 sec)
+
+mysql> Select * from student where x_per>60.00 AND state="UP";
++--------+------+---------+-------+-------+
+| rollNo | name | email   | x_per | state |
++--------+------+---------+-------+-------+
+|      6 | Ravi | ravi@ms | 72.43 | UP    |
++--------+------+---------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> Select * from student where x_per>60.00 OR state="UP";
++--------+---------+----------------+-------+-----------+
+| rollNo | name    | email          | x_per | state     |
++--------+---------+----------------+-------+-----------+
+|      1 | ABC     | abc@gmail.com  | 77.42 | Karnataka |
+|      4 | hero    | hero@gmail.com | 87.42 | Jharkhand |
+|      5 | Ram     | ram@gmail.com  | 93.12 | Bihar     |
+|      6 | Ravi    | ravi@ms        | 72.43 | UP        |
+|      7 | mosham  | mosham@ms      | 42.51 | UP        |
+|      9 | Levis   | levis@ms       | 91.11 | KARNATAKA |
+|     10 | Shruthi | Shruthi@ms     | 97.11 | Kerala    |
++--------+---------+----------------+-------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from student where x_per>60.00 || state="UP";
++--------+---------+----------------+-------+-----------+
+| rollNo | name    | email          | x_per | state     |
++--------+---------+----------------+-------+-----------+
+|      1 | ABC     | abc@gmail.com  | 77.42 | Karnataka |
+|      4 | hero    | hero@gmail.com | 87.42 | Jharkhand |
+|      5 | Ram     | ram@gmail.com  | 93.12 | Bihar     |
+|      6 | Ravi    | ravi@ms        | 72.43 | UP        |
+|      7 | mosham  | mosham@ms      | 42.51 | UP        |
+|      9 | Levis   | levis@ms       | 91.11 | KARNATAKA |
+|     10 | Shruthi | Shruthi@ms     | 97.11 | Kerala    |
++--------+---------+----------------+-------+-----------+
+7 rows in set, 1 warning (0.00 sec)
+
+mysql> Select * from student where x_per>60.00 || state="KERALA";
++--------+---------+------------------+-------+-----------+
+| rollNo | name    | email            | x_per | state     |
++--------+---------+------------------+-------+-----------+
+|      1 | ABC     | abc@gmail.com    | 77.42 | Karnataka |
+|      3 | bhoomi  | bhoomi@gmail.com | 45.42 | Kerala    |
+|      4 | hero    | hero@gmail.com   | 87.42 | Jharkhand |
+|      5 | Ram     | ram@gmail.com    | 93.12 | Bihar     |
+|      6 | Ravi    | ravi@ms          | 72.43 | UP        |
+|      9 | Levis   | levis@ms         | 91.11 | KARNATAKA |
+|     10 | Shruthi | Shruthi@ms       | 97.11 | Kerala    |
++--------+---------+------------------+-------+-----------+
+7 rows in set, 1 warning (0.00 sec)
+
+mysql> select * from student where state in("Karnataka","UP","BIHAR
+");
++--------+--------+---------------+-------+-----------+
+| rollNo | name   | email         | x_per | state     |
++--------+--------+---------------+-------+-----------+
+|      1 | ABC    | abc@gmail.com | 77.42 | Karnataka |
+|      5 | Ram    | ram@gmail.com | 93.12 | Bihar     |
+|      6 | Ravi   | ravi@ms       | 72.43 | UP        |
+|      7 | mosham | mosham@ms     | 42.51 | UP        |
+|      9 | Levis  | levis@ms      | 91.11 | KARNATAKA |
++--------+--------+---------------+-------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> Select * from student Where email is NOT NULL;
++--------+---------+------------------+-------+-----------+
+| rollNo | name    | email            | x_per | state     |
++--------+---------+------------------+-------+-----------+
+|      1 | ABC     | abc@gmail.com    | 77.42 | Karnataka |
+|      2 | sudip   | sudip@ms         | 56.43 | Nepal     |
+|      3 | bhoomi  | bhoomi@gmail.com | 45.42 | Kerala    |
+|      4 | hero    | hero@gmail.com   | 87.42 | Jharkhand |
+|      5 | Ram     | ram@gmail.com    | 93.12 | Bihar     |
+|      6 | Ravi    | ravi@ms          | 72.43 | UP        |
+|      7 | mosham  | mosham@ms        | 42.51 | UP        |
+|      8 | Rehan   | rehan@ms         | 59.11 | MP        |
+|      9 | Levis   | levis@ms         | 91.11 | KARNATAKA |
+|     10 | Shruthi | Shruthi@ms       | 97.11 | Kerala    |
++--------+---------+------------------+-------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from student where name like '%a';
+Empty set (0.00 sec)
+
+mysql> select * from student where name like '%r';
+Empty set (0.00 sec)
+
+mysql> select * from student where email like '%a';
+Empty set (0.00 sec)
+
+mysql> select * from student where name like '%i';
++--------+---------+------------------+-------+--------+
+| rollNo | name    | email            | x_per | state  |
++--------+---------+------------------+-------+--------+
+|      3 | bhoomi  | bhoomi@gmail.com | 45.42 | Kerala |
+|      6 | Ravi    | ravi@ms          | 72.43 | UP     |
+|     10 | Shruthi | Shruthi@ms       | 97.11 | Kerala |
++--------+---------+------------------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where name like 'r%';
++--------+-------+---------------+-------+-------+
+| rollNo | name  | email         | x_per | state |
++--------+-------+---------------+-------+-------+
+|      5 | Ram   | ram@gmail.com | 93.12 | Bihar |
+|      6 | Ravi  | ravi@ms       | 72.43 | UP    |
+|      8 | Rehan | rehan@ms      | 59.11 | MP    |
++--------+-------+---------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where name like '%a%';
++--------+--------+---------------+-------+-----------+
+| rollNo | name   | email         | x_per | state     |
++--------+--------+---------------+-------+-----------+
+|      1 | ABC    | abc@gmail.com | 77.42 | Karnataka |
+|      5 | Ram    | ram@gmail.com | 93.12 | Bihar     |
+|      6 | Ravi   | ravi@ms       | 72.43 | UP        |
+|      7 | mosham | mosham@ms     | 42.51 | UP        |
+|      8 | Rehan  | rehan@ms      | 59.11 | MP        |
++--------+--------+---------------+-------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student ORDER BY name ASC;
++--------+---------+------------------+-------+-----------+
+| rollNo | name    | email            | x_per | state     |
++--------+---------+------------------+-------+-----------+
+|      1 | ABC     | abc@gmail.com    | 77.42 | Karnataka |
+|      3 | bhoomi  | bhoomi@gmail.com | 45.42 | Kerala    |
+|      4 | hero    | hero@gmail.com   | 87.42 | Jharkhand |
+|      9 | Levis   | levis@ms         | 91.11 | KARNATAKA |
+|      7 | mosham  | mosham@ms        | 42.51 | UP        |
+|      5 | Ram     | ram@gmail.com    | 93.12 | Bihar     |
+|      6 | Ravi    | ravi@ms          | 72.43 | UP        |
+|      8 | Rehan   | rehan@ms         | 59.11 | MP        |
+|     10 | Shruthi | Shruthi@ms       | 97.11 | Kerala    |
+|      2 | sudip   | sudip@ms         | 56.43 | Nepal     |
++--------+---------+------------------+-------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from student ORDER BY name;
++--------+---------+------------------+-------+-----------+
+| rollNo | name    | email            | x_per | state     |
++--------+---------+------------------+-------+-----------+
+|      1 | ABC     | abc@gmail.com    | 77.42 | Karnataka |
+|      3 | bhoomi  | bhoomi@gmail.com | 45.42 | Kerala    |
+|      4 | hero    | hero@gmail.com   | 87.42 | Jharkhand |
+|      9 | Levis   | levis@ms         | 91.11 | KARNATAKA |
+|      7 | mosham  | mosham@ms        | 42.51 | UP        |
+|      5 | Ram     | ram@gmail.com    | 93.12 | Bihar     |
+|      6 | Ravi    | ravi@ms          | 72.43 | UP        |
+|      8 | Rehan   | rehan@ms         | 59.11 | MP        |
+|     10 | Shruthi | Shruthi@ms       | 97.11 | Kerala    |
+|      2 | sudip   | sudip@ms         | 56.43 | Nepal     |
++--------+---------+------------------+-------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from student ORDER BY x_per,name;
++--------+---------+------------------+-------+-----------+
+| rollNo | name    | email            | x_per | state     |
++--------+---------+------------------+-------+-----------+
+|      7 | mosham  | mosham@ms        | 42.51 | UP        |
+|      3 | bhoomi  | bhoomi@gmail.com | 45.42 | Kerala    |
+|      2 | sudip   | sudip@ms         | 56.43 | Nepal     |
+|      8 | Rehan   | rehan@ms         | 59.11 | MP        |
+|      6 | Ravi    | ravi@ms          | 72.43 | UP        |
+|      1 | ABC     | abc@gmail.com    | 77.42 | Karnataka |
+|      4 | hero    | hero@gmail.com   | 87.42 | Jharkhand |
+|      9 | Levis   | levis@ms         | 91.11 | KARNATAKA |
+|      5 | Ram     | ram@gmail.com    | 93.12 | Bihar     |
+|     10 | Shruthi | Shruthi@ms       | 97.11 | Kerala    |
++--------+---------+------------------+-------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from student ORDER BY x_per;
++--------+---------+------------------+-------+-----------+
+| rollNo | name    | email            | x_per | state     |
++--------+---------+------------------+-------+-----------+
+|      7 | mosham  | mosham@ms        | 42.51 | UP        |
+|      3 | bhoomi  | bhoomi@gmail.com | 45.42 | Kerala    |
+|      2 | sudip   | sudip@ms         | 56.43 | Nepal     |
+|      8 | Rehan   | rehan@ms         | 59.11 | MP        |
+|      6 | Ravi    | ravi@ms          | 72.43 | UP        |
+|      1 | ABC     | abc@gmail.com    | 77.42 | Karnataka |
+|      4 | hero    | hero@gmail.com   | 87.42 | Jharkhand |
+|      9 | Levis   | levis@ms         | 91.11 | KARNATAKA |
+|      5 | Ram     | ram@gmail.com    | 93.12 | Bihar     |
+|     10 | Shruthi | Shruthi@ms       | 97.11 | Kerala    |
++--------+---------+------------------+-------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from student ORDER BY x_per DESC;
++--------+---------+------------------+-------+-----------+
+| rollNo | name    | email            | x_per | state     |
++--------+---------+------------------+-------+-----------+
+|     10 | Shruthi | Shruthi@ms       | 97.11 | Kerala    |
+|      5 | Ram     | ram@gmail.com    | 93.12 | Bihar     |
+|      9 | Levis   | levis@ms         | 91.11 | KARNATAKA |
+|      4 | hero    | hero@gmail.com   | 87.42 | Jharkhand |
+|      1 | ABC     | abc@gmail.com    | 77.42 | Karnataka |
+|      6 | Ravi    | ravi@ms          | 72.43 | UP        |
+|      8 | Rehan   | rehan@ms         | 59.11 | MP        |
+|      2 | sudip   | sudip@ms         | 56.43 | Nepal     |
+|      3 | bhoomi  | bhoomi@gmail.com | 45.42 | Kerala    |
+|      7 | mosham  | mosham@ms        | 42.51 | UP        |
++--------+---------+------------------+-------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select name,email,x_per from student ORDER BY name DESC;
++---------+------------------+-------+
+| name    | email            | x_per |
++---------+------------------+-------+
+| sudip   | sudip@ms         | 56.43 |
+| Shruthi | Shruthi@ms       | 97.11 |
+| Rehan   | rehan@ms         | 59.11 |
+| Ravi    | ravi@ms          | 72.43 |
+| Ram     | ram@gmail.com    | 93.12 |
+| mosham  | mosham@ms        | 42.51 |
+| Levis   | levis@ms         | 91.11 |
+| hero    | hero@gmail.com   | 87.42 |
+| bhoomi  | bhoomi@gmail.com | 45.42 |
+| ABC     | abc@gmail.com    | 77.42 |
++---------+------------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select abs(10), abs(-10);
++---------+----------+
+| abs(10) | abs(-10) |
++---------+----------+
+|      10 |       10 |
++---------+----------+
+1 row in set (0.00 sec)
+
+mysql> select abs(10,-4), abs(-10);
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'abs'
+mysql> select abs(10,4), abs(10,3);
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'abs'
+mysql> select mod(10,4), mod(10,3);
++-----------+-----------+
+| mod(10,4) | mod(10,3) |
++-----------+-----------+
+|         2 |         1 |
++-----------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select ceil(x_per),FLOOR(x_per) from student;
++-------------+--------------+
+| ceil(x_per) | FLOOR(x_per) |
++-------------+--------------+
+|          78 |           77 |
+|          57 |           56 |
+|          46 |           45 |
+|          88 |           87 |
+|          94 |           93 |
+|          73 |           72 |
+|          43 |           42 |
+|          60 |           59 |
+|          92 |           91 |
+|          98 |           97 |
++-------------+--------------+
+10 rows in set (0.00 sec)
+
+mysql> Select ROUND(1.49), ROUND(1.5), ROUND(1.51);
++-------------+------------+-------------+
+| ROUND(1.49) | ROUND(1.5) | ROUND(1.51) |
++-------------+------------+-------------+
+|           1 |          2 |           2 |
++-------------+------------+-------------+
+1 row in set (0.01 sec)
+
+mysql> Select ROUND(1.44,1), ROUND(1.50, 1), ROUND(1.53,1);
++---------------+----------------+---------------+
+| ROUND(1.44,1) | ROUND(1.50, 1) | ROUND(1.53,1) |
++---------------+----------------+---------------+
+|           1.4 |            1.5 |           1.5 |
++---------------+----------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> Select TRUNCATE(1.44,1), TRUNCATE(1.50, 1), TRUNCATE(1.53,1);
++------------------+-------------------+------------------+
+| TRUNCATE(1.44,1) | TRUNCATE(1.50, 1) | TRUNCATE(1.53,1) |
++------------------+-------------------+------------------+
+|              1.4 |               1.5 |              1.5 |
++------------------+-------------------+------------------+
+1 row in set (0.00 sec)
+
+mysql> Select REPLACE('MESEI','E','A');
++--------------------------+
+| REPLACE('MESEI','E','A') |
++--------------------------+
+| MASAI                    |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> Select CONCAT("MASAI","SCHOOL");
++--------------------------+
+| CONCAT("MASAI","SCHOOL") |
++--------------------------+
+| MASAISCHOOL              |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> Select CONCAT("MASAI ","SCHOOL");
++---------------------------+
+| CONCAT("MASAI ","SCHOOL") |
++---------------------------+
+| MASAI SCHOOL              |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> Select CONCAT(CONCAT("MASAI ","SCHOOL"),"Banglore");
++----------------------------------------------+
+| CONCAT(CONCAT("MASAI ","SCHOOL"),"Banglore") |
++----------------------------------------------+
+| MASAI SCHOOLBanglore                         |
++----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> Select CONCAT(CONCAT("MASAI ","SCHOOL")," Banglore");
++-----------------------------------------------+
+| CONCAT(CONCAT("MASAI ","SCHOOL")," Banglore") |
++-----------------------------------------------+
+| MASAI SCHOOL Banglore                         |
++-----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select curdate(), sysdate();
++------------+---------------------+
+| curdate()  | sysdate()           |
++------------+---------------------+
+| 2023-02-09 | 2023-02-09 13:36:42 |
++------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select curdate(), now();
++------------+---------------------+
+| curdate()  | now()               |
++------------+---------------------+
+| 2023-02-09 | 2023-02-09 13:36:59 |
++------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select curdate(),sleep(3), sysdate();
++------------+----------+---------------------+
+| curdate()  | sleep(3) | sysdate()           |
++------------+----------+---------------------+
+| 2023-02-09 |        0 | 2023-02-09 13:37:58 |
++------------+----------+---------------------+
+1 row in set (3.02 sec)
+
+mysql> select sysdate(),sleep(3), sysdate();
++---------------------+----------+---------------------+
+| sysdate()           | sleep(3) | sysdate()           |
++---------------------+----------+---------------------+
+| 2023-02-09 13:38:21 |        0 | 2023-02-09 13:38:24 |
++---------------------+----------+---------------------+
+1 row in set (3.01 sec)
+
+mysql> select now(),sleep(4), curdate(), sysdate();
++---------------------+----------+------------+---------------------+
+| now()               | sleep(4) | curdate()  | sysdate()
+ |
++---------------------+----------+------------+---------------------+
+| 2023-02-09 13:39:28 |        0 | 2023-02-09 | 2023-02-09 13:39:32 |
++---------------------+----------+------------+---------------------+
+1 row in set (4.01 sec)
+
+mysql> select addDate(curdate(),INTERVAL 10 day);
++------------------------------------+
+| addDate(curdate(),INTERVAL 10 day) |
++------------------------------------+
+| 2023-02-19                         |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select addDate(curdate(),INTERVAL 3 month);
++-------------------------------------+
+| addDate(curdate(),INTERVAL 3 month) |
++-------------------------------------+
+| 2023-05-09                          |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select UPPER(name) from student;
++-------------+
+| UPPER(name) |
++-------------+
+| ABC         |
+| SUDIP       |
+| BHOOMI      |
+| HERO        |
+| RAM         |
+| RAVI        |
+| MOSHAM      |
+| REHAN       |
+| LEVIS       |
+| SHRUTHI     |
++-------------+
+10 rows in set (0.01 sec)
+
+mysql> select min(x_per) from student;
++------------+
+| min(x_per) |
++------------+
+|      42.51 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> select * from student;
++--------+---------+------------------+-------+-----------+
+| rollNo | name    | email            | x_per | state     |
++--------+---------+------------------+-------+-----------+
+|      1 | ABC     | abc@gmail.com    | 77.42 | Karnataka |
+|      2 | sudip   | sudip@ms         | 56.43 | Nepal     |
+|      3 | bhoomi  | bhoomi@gmail.com | 45.42 | Kerala    |
+|      4 | hero    | hero@gmail.com   | 87.42 | Jharkhand |
+|      5 | Ram     | ram@gmail.com    | 93.12 | Bihar     |
+|      6 | Ravi    | ravi@ms          | 72.43 | UP        |
+|      7 | mosham  | mosham@ms        | 42.51 | UP        |
+|      8 | Rehan   | rehan@ms         | 59.11 | MP        |
+|      9 | Levis   | levis@ms         | 91.11 | KARNATAKA |
+|     10 | Shruthi | Shruthi@ms       | 97.11 | Kerala    |
++--------+---------+------------------+-------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select max(x_per) from student;
++------------+
+| max(x_per) |
++------------+
+|      97.11 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select name,max(x_per) from student;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'sb101_feb.student.name'; this is incompatible with sql_mode=only_full_group_by
+mysql> select name,x_per from student WHERE x_per= max(x_per);
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select avg(x_per) AVG_PER from student;
++-----------+
+| AVG_PER   |
++-----------+
+| 72.208000 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select rollNO, name, IF(x_per >=50.00, 'PASS',"FAIL");
+ERROR 1054 (42S22): Unknown column 'rollNO' in 'field list'
+mysql> select rollNo, name, IF(x_per >=50.00, 'PASS',"FAIL");
+ERROR 1054 (42S22): Unknown column 'rollNo' in 'field list'
+mysql> select rollNo, name, IF(x_per >=50.00, 'PASS',"FAIL") from student;
++--------+---------+----------------------------------+
+| rollNo | name    | IF(x_per >=50.00, 'PASS',"FAIL") |
++--------+---------+----------------------------------+
+|      1 | ABC     | PASS                             |
+|      2 | sudip   | PASS                             |
+|      3 | bhoomi  | FAIL                             |
+|      4 | hero    | PASS                             |
+|      5 | Ram     | PASS                             |
+|      6 | Ravi    | PASS                             |
+|      7 | mosham  | FAIL                             |
+|      8 | Rehan   | PASS                             |
+|      9 | Levis   | PASS                             |
+|     10 | Shruthi | PASS                             |
++--------+---------+----------------------------------+
+10 rows in set (0.00 sec)
