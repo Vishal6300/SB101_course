@@ -1,0 +1,10 @@
+Q1/- What is the requirement of Java Database communication?
+Q2/- What is JDBC, Write a note on JDBC driver software.
+Q3/- Write a Jdbc application to establish the connection with the Mysql database.
+Q4/- Write down the responsibilities of the Jdbc Client.
+
+Answers:
+
+1. JDBC (Java Database connectivity) is used to connect the java application to the
+	database for storing the important information or data. We can easily upload/retrive
+	the data from JDBC and it is a very secure process. So, we generally use the databases.
