@@ -43,7 +43,7 @@ Sample Output
 
 WEDNESDAY
  */
-class Result {
+class Result1 {
 
     /*
      * Complete the 'findDay' function below.
