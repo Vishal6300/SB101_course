@@ -44,7 +44,7 @@ public class Main {
 		System.out.println(filteredList);
 		
 //		System.out.println(filteredList.stream().sorted((i1,i2) -> i1 < i2? -1:1).toList());
-		Arrays.sort(filteredList, Product.comp());
+//		System.out.println(filteredList(i -> ));
 	}
 
 }

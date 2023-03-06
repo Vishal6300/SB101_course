@@ -1,6 +1,7 @@
 package problem1;
 
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -19,5 +20,9 @@ public class Main {
 		Supplier<Product>supplier=()->new Product(03,"sharpner",45.00,70);
 		
 		System.out.println(supplier.get());
+		
+		Function<Product, String> fn= p -> p.getProductId()+","+ p.getProductName()+","+p.getPrice()+","+p.getQuantity();
+		
+		System.out.println(fn.apply(new Product(1, "Pen", 20.00, 100)));
 	}
 }
